@@ -11,7 +11,7 @@ const Daily = () => {
   const [endDate, setEndDate] = useState(new Date("2021-03-01"));
   const { data } = useGetSalesQuery();
   const theme = useTheme();
-  const isNonMobile = useMediaQuery("(min-width: 600px)")
+  const isNonMobile = useMediaQuery("(min-width: 600px)");
 
   const [formattedData] = useMemo(() => {
     if (!data) return [];
@@ -51,7 +51,11 @@ const Daily = () => {
   return (
     <Box m="1.5rem 2.5rem">
       <Header title="DAILY SALES" subtitle="Chart of daily sales" />
-      <Box height="70vh" width={`calc(100vw - ${isNonMobile ? "350px" : "50px"})`}>
+      <Box
+        m="0 auto"
+        height="70vh"
+        width={`calc(100vw - ${isNonMobile ? "350px" : "50px"})`}
+      >
         <Box display="flex" justifyContent="flex-end">
           <Box>
             <DatePicker

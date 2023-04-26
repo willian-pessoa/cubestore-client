@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Box, useTheme } from "@mui/material";
+import { Box, useTheme, useMediaQuery } from "@mui/material";
 import Header from "components/Header";
 import { ResponsiveLine } from "@nivo/line";
 import { useGetSalesQuery } from "state/api";
@@ -7,6 +7,7 @@ import { useGetSalesQuery } from "state/api";
 const Monthly = () => {
   const { data } = useGetSalesQuery();
   const theme = useTheme();
+  const isNonMobile = useMediaQuery("(min-width: 600px)");
 
   const [formattedData] = useMemo(() => {
     if (!data) return [];
@@ -41,7 +42,11 @@ const Monthly = () => {
   return (
     <Box m="1.5rem 2.5rem">
       <Header title="MONTHLY SALES" subtitle="Chart of monthlysales" />
-      <Box height="75vh">
+      <Box
+        height="75vh"
+        m="0 auto"
+        width={`calc(100vw - ${isNonMobile ? "350px" : "50px"})`}
+      >
         {data ? (
           <ResponsiveLine
             data={formattedData}

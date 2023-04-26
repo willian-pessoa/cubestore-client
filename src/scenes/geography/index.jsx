@@ -8,12 +8,13 @@ import { geoData } from "state/geoData";
 const Geography = () => {
   const theme = useTheme();
   const { data } = useGetGeographyQuery();
-  const isNonMobile = useMediaQuery("(min-width: 600px)")
+  const isNonMobile = useMediaQuery("(min-width: 600px)");
 
   return (
     <Box m="1.5rem 2.5rem">
       <Header title="GEOGRAPHY" subtitle="Find where your users are located." />
       <Box
+        m="0 auto"
         mt="20px"
         height="70vh"
         width={`calc(100vw - ${isNonMobile ? "350px" : "50px"})`}
