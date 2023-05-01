@@ -112,7 +112,7 @@ const Sidebar = ({
       {isSideBarOpen && (
         <Drawer
           open={isSideBarOpen}
-          onClick={() => setIsSideBarOpen(false)}
+          onClick={() => setIsSideBarOpen(true)}
           variant="persistent"
           anchor="left"
           sx={{
