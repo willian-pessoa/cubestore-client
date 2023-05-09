@@ -11,7 +11,6 @@ import {
 import FlexBetween from "components/FlexBetween";
 import { useDispatch } from "react-redux";
 import { setMode, setLogout } from "state";
-import profileImage from "assets/profile.jpeg";
 import {
   AppBar,
   Button,
@@ -24,6 +23,15 @@ import {
   MenuItem,
   useTheme,
 } from "@mui/material";
+import userProfile from "assets/userProfile.jpg";
+import adminProfile from "assets/adminProfile.jpg";
+import superProfile from "assets/superProfile.jpg";
+
+const profileImg = {
+  user: userProfile,
+  admin: adminProfile,
+  superadmin: superProfile,
+};
 
 const Navbar = ({ user, isSideBarOpen, setIsSideBarOpen }) => {
   const dispatch = useDispatch();
@@ -93,7 +101,7 @@ const Navbar = ({ user, isSideBarOpen, setIsSideBarOpen }) => {
               <Box
                 component="img"
                 alt="profile"
-                src={profileImage}
+                src={profileImg[user.role]}
                 height="32px"
                 width="32px"
                 borderRadius="50%"

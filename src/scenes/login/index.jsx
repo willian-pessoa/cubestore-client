@@ -33,7 +33,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [postLogin, { isLoading, data }] = usePostLoginMutation();
+  const [postLogin, { isLoading, data, isError }] = usePostLoginMutation();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -78,7 +78,11 @@ const Login = () => {
           gap="2rem"
           sx={{ alignItems: "flex-start !important" }}
         >
-          <FormControl variant="standard" sx={{ width: "100%" }}>
+          <FormControl
+            error={isError}
+            variant="standard"
+            sx={{ width: "100%" }}
+          >
             <InputLabel htmlFor="standard-adornment-password">Email</InputLabel>
             <Input
               id="standard-adornment-email"
@@ -88,13 +92,17 @@ const Login = () => {
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton aria-label="toggle email">
-                    <Email />
+                    <Email style={{ color: isError ? "red" : "white" }} />
                   </IconButton>
                 </InputAdornment>
               }
             />
           </FormControl>
-          <FormControl variant="standard" sx={{ width: "100%" }}>
+          <FormControl
+            error={isError}
+            variant="standard"
+            sx={{ width: "100%" }}
+          >
             <InputLabel htmlFor="standard-adornment-password">
               Password
             </InputLabel>
@@ -110,7 +118,15 @@ const Login = () => {
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
                   >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                    {showPassword ? (
+                      <VisibilityOff
+                        style={{ color: isError ? "red" : "white" }}
+                      />
+                    ) : (
+                      <Visibility
+                        style={{ color: isError ? "red" : "white" }}
+                      />
+                    )}
                   </IconButton>
                 </InputAdornment>
               }

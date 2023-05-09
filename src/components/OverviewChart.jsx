@@ -48,6 +48,7 @@ const OverviewChart = ({ isDashboard = false, view }) => {
 
   return (
     <ResponsiveLine
+      animate={!isDashboard}
       data={view === "sales" ? totalSalesLine : totalUnitsLine}
       theme={{
         axis: {

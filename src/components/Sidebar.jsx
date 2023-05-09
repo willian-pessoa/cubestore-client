@@ -30,7 +30,15 @@ import {
 } from "@mui/icons-material";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
-import profileImage from "assets/profile.jpeg";
+import userProfile from "assets/userProfile.jpg";
+import adminProfile from "assets/adminProfile.jpg";
+import superProfile from "assets/superProfile.jpg";
+
+const profileImg = {
+  user: userProfile,
+  admin: adminProfile,
+  superadmin: superProfile,
+};
 
 const navItems = [
   {
@@ -197,11 +205,15 @@ const Sidebar = ({
 
           <Box bottom="2rem">
             <Divider />
-            <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0.5rem 3rem">
+            <FlexBetween
+              textTransform="none"
+              gap="1rem"
+              m="1.5rem 2rem 0.5rem 3rem"
+            >
               <Box
                 component="img"
                 alt="profile"
-                src={profileImage}
+                src={profileImg[user.role]}
                 height="40px"
                 widht="40px"
                 borderRadius="50%"
