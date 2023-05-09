@@ -5,11 +5,12 @@ import { useSelector } from "react-redux";
 import { DataGrid } from "@mui/x-data-grid";
 import Header from "components/Header";
 import CustomColumnMenu from "components/DataGridCustomColumnMenu";
+import CenterBox from "components/CenterBox";
 
 const Performance = () => {
   const theme = useTheme();
   const userId = useSelector((state) => state.global.userId);
-  const { data, isLoading } = useGetUserPerformanceQuery(userId);
+  const { data, isLoading, isError } = useGetUserPerformanceQuery(userId);
 
   const columns = [
     {
@@ -41,6 +42,17 @@ const Performance = () => {
       renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
     },
   ];
+
+  if (isError)
+    return (
+      <Box m="1.5rem 2.5rem" height="60vh">
+        <Header
+          title="PERFORMANCE"
+          subtitle="Track your Affiliate Sales Performance Here"
+        />
+        <CenterBox height="100%">No sales founded</CenterBox>
+      </Box>
+    );
 
   return (
     <Box m="1.5rem 2.5rem">

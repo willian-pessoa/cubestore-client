@@ -44,58 +44,72 @@ const navItems = [
   {
     text: "Dashboard",
     icon: <HomeOutlined />,
+    role: "user"
   },
   {
     text: "Client Facing",
     icon: null,
+    role: "user"
   },
   {
     text: "Products",
     icon: <ShoppingCartOutlined />,
+    role: "user"
   },
   {
     text: "Customers",
     icon: <Groups2Outlined />,
+    role: "user"
   },
   {
     text: "Transactions",
     icon: <ReceiptLongOutlined />,
+    role: "user"
   },
   {
     text: "Geography",
     icon: <PublicOutlined />,
+    role: "user"
   },
   {
     text: "Sales",
     icon: null,
+    role: "user"
   },
   {
     text: "Overview",
     icon: <PointOfSaleOutlined />,
+    role: "user"
   },
   {
     text: "Daily",
     icon: <TodayOutlined />,
+    role: "user"
   },
   {
     text: "Monthly",
     icon: <CalendarMonthOutlined />,
+    role: "user"
   },
   {
     text: "Breakdown",
     icon: <PieChartOutlined />,
+    role: "user"
   },
   {
     text: "Management",
     icon: null,
+    role: "admin"
   },
   {
     text: "Admin",
     icon: <AdminPanelSettingsOutlined />,
+    role: "admin"
   },
   {
     text: "Performance",
     icon: <TrendingUpOutlined />,
+    role: "admin"
   },
 ];
 
@@ -105,6 +119,7 @@ const Sidebar = ({
   isSideBarOpen,
   setIsSideBarOpen,
   isNonMobile,
+  userRole,
 }) => {
   const { pathname } = useLocation();
   const [active, setActive] = useState("");
@@ -152,7 +167,9 @@ const Sidebar = ({
               </FlexBetween>
             </Box>
             <List>
-              {navItems.map(({ text, icon }) => {
+              {navItems.map(({ text, icon, role }) => {
+                if (role === "admin" && userRole === "user" ) return ""
+
                 if (!icon) {
                   return (
                     <Typography key={text} sx={{ m: "2.25rem 0 1em 3rem" }}>

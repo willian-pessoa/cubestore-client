@@ -12,6 +12,7 @@ const Layout = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)")
   const [isSideBarOpen, setIsSideBarOpen] = useState(true)
   const userId = useSelector((state) => state.global.userId)
+  const userRole = useSelector((state) => state.global.role)
   const { data } = useGetUserQuery(userId)
 
   return (
@@ -22,6 +23,7 @@ const Layout = () => {
         drawerWidth="250px"
         isSideBarOpen={isSideBarOpen}
         setIsSideBarOpen={setIsSideBarOpen}
+        userRole={userRole}
       />
       <Box flexGrow={1}>
         <NavBar
