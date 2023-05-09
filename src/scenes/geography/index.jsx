@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, useTheme, useMediaQuery } from "@mui/material";
-import { useGetGeographyQuery } from "state/api";
+import { useGetGeographyQuery } from "state/apiQuerys";
 import Header from "components/Header";
 import { ResponsiveChoropleth } from "@nivo/geo";
 import { geoData } from "state/geoData";

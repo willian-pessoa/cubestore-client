@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   LightModeOutlined,
   DarkModeOutlined,
@@ -9,7 +10,7 @@ import {
 } from "@mui/icons-material";
 import FlexBetween from "components/FlexBetween";
 import { useDispatch } from "react-redux";
-import { setMode } from "state";
+import { setMode, setLogout } from "state";
 import profileImage from "assets/profile.jpeg";
 import {
   AppBar,
@@ -26,12 +27,17 @@ import {
 
 const Navbar = ({ user, isSideBarOpen, setIsSideBarOpen }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
-  const handleClose = () => setAnchorEl(null);
+  const handleClose = () => {
+    setAnchorEl(null);
+    dispatch(setLogout());
+    navigate("/login");
+  };
 
   return (
     <AppBar
@@ -121,7 +127,6 @@ const Navbar = ({ user, isSideBarOpen, setIsSideBarOpen }) => {
               <MenuItem onClick={handleClose}>Log Out</MenuItem>
             </Menu>
           </FlexBetween>
-
         </FlexBetween>
       </Toolbar>
     </AppBar>

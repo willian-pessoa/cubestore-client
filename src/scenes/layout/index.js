@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Box, useMediaQuery } from "@mui/material"
 import { Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { useGetUserQuery } from 'state/api'
+import { useGetUserQuery } from 'state/apiQuerys'
 
 import NavBar from "components/Navbar"
 import SideBar from "components/Sidebar"

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, useTheme } from "@mui/material";
-import { useGetCustomersQuery } from "state/api";
+import { useGetCustomersQuery } from "state/apiQuerys";
 import Header from "components/Header";
 import { DataGrid } from "@mui/x-data-grid";
 
@@ -19,7 +19,7 @@ const Customers = () => {
       headerName: "Name",
       flex: 0.5,
       align: "center",
-      headerAlign: "center"
+      headerAlign: "center",
     },
     {
       field: "email",
@@ -39,7 +39,7 @@ const Customers = () => {
       headerName: "Country",
       flex: 0.4,
       align: "center",
-      headerAlign: "center"
+      headerAlign: "center",
     },
     {
       field: "occupation",
@@ -51,7 +51,7 @@ const Customers = () => {
       headerName: "Role",
       flex: 0.3,
       align: "center",
-      headerAlign: "center"
+      headerAlign: "center",
     },
   ];
 
@@ -67,7 +67,7 @@ const Customers = () => {
           },
           "& .MuiDataGrid-cell": {
             borderBottom: "none",
-            alignContent: "center"
+            alignContent: "center",
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: theme.palette.background.alt,

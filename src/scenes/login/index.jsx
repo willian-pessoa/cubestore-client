@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
@@ -9,6 +10,8 @@ import {
   IconButton,
   FormControl,
   InputLabel,
+  CircularProgress,
+  Typography,
 } from "@mui/material";
 import { Email, Visibility, VisibilityOff } from "@mui/icons-material";
 
@@ -16,13 +19,21 @@ import FlexBetween from "components/FlexBetween";
 import CenterBox from "components/CenterBox";
 import Header from "components/Header";
 
+// REDUX
+import { useDispatch } from "react-redux";
+import { setUserId, setLogin, setToken, setRole } from "state";
+import { usePostLoginMutation } from "state/apiMutations";
+
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const theme = useTheme();
   const isNonMobile = useMediaQuery("(min-width: 600px)");
 
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [postLogin, { isLoading, data }] = usePostLoginMutation();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -30,12 +41,33 @@ const Login = () => {
     event.preventDefault();
   };
 
+  const handleLogin = async () => {
+    await postLogin({ email, password });
+  };
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setLogin());
+      dispatch(setUserId(data.user._id));
+      dispatch(setRole(data.user.role));
+      data.token && dispatch(setToken(data.token));
+      navigate("/dashboard");
+    }
+  }, [data, dispatch, navigate]);
+
+  if (isLoading)
+    return (
+      <CenterBox>
+        <CircularProgress />
+      </CenterBox>
+    );
+
   return (
     <CenterBox width="100%" height="100%">
       <Box
         p="10px 20px"
         width={isNonMobile ? "400px" : "90%"}
-        height="350px"
+        height="420px"
         bgcolor={theme.palette.background.alt}
         borderRadius="10px"
       >
@@ -52,7 +84,7 @@ const Login = () => {
               id="standard-adornment-email"
               type="text"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value.trim())}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton aria-label="toggle email">
@@ -70,7 +102,7 @@ const Login = () => {
               id="standard-adornment-password"
               type={showPassword ? "text" : "password"}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value.trim())}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -99,9 +131,21 @@ const Login = () => {
                 color: theme.palette.secondary.light,
               },
             }}
+            onClick={() => handleLogin()}
           >
             Login
           </Button>
+          <Box>
+            <Typography fontSize="0.75rem">
+              Email: user@user.com / Password: user
+            </Typography>
+            <Typography fontSize="0.75rem">
+              Email: admin@admin.com / Password: admin
+            </Typography>
+            <Typography fontSize="0.75rem">
+              Email: superadmin@superadmin.com / Password: superadmin
+            </Typography>
+          </Box>
         </FlexBetween>
       </Box>
     </CenterBox>
