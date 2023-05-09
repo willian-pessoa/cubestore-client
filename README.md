@@ -2,7 +2,9 @@
 
 <p align="center">Front-end do projeto MERN full stack que tem como base o tutorial feito por EdRoh, que pode ser acessado clicando neste <a href="https://youtu.be/0cPCMIuDk2I" target="_blank">link</a>. Modificações no codigo estão sendo feitas por mim, Willian Pessoa, para adicionar novas funcionalidades e incrementos.</p>
 
-#### Demo: 
+#### Demo: https://cubestore-client.vercel.app/ 
+
+Aguarde um pouco, talvez leve um tempo a mais para a primeira inicialização
 
 ### Status do Projeto
 
