@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+<h1 align="center">CUBESTORE FRONT-END</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">Front-end do projeto MERN full stack que tem como base o tutorial feito por EdRoh, que pode ser acessado clicando neste <a href="https://youtu.be/0cPCMIuDk2I" target="_blank">link</a>. Modificações no codigo estão sendo feitas por mim, Willian Pessoa, para adicionar novas funcionalidades e incrementos.</p>
 
-## Available Scripts
+#### Demo: 
 
-In the project directory, you can run:
+### Status do Projeto
 
-### `npm start`
+Em desenvolvimento
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [x] Login de usuário
+- [ ] Cadastro de usuario
+- [x] Dashboard
+- [x] Client Facing
+- [x] Sales
+- [x] Management
+- [ ] Configurações de Usuario
+- [ ] Remover Usuario
+- [ ] Editar Produto
+- [ ] Cadastrar Produto
+- [ ] Remover Produto
+- [ ] Proteção de rota
 
-### `npm test`
+### Dificuldades e Desafios durante o projeto(front-end e back-end):
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+12/04/2023
+- Primeira requisição do front end para o back end usando toolkit query estava sendo rejeitada, testei end point separado usando navegador direto no back end e funcionou normal, verifiquei se o id que estava sendo pego do store no redux para a requisição estava ok tambem, por fim lembrei que tinha configurado a variavel de ambiente para a url base das requições porem não havia resetado o o serviço do front end, depois disso a requisição funcionou como deveria.
 
-### `npm run build`
+- A box com as informações do User no Drawer estava configurado com position absolute, o que era um problema quando o Drawer tinha overflow, pois essa box ficava porcima das opções. Para corrigir isso configurei o display da div do drawer para flex e justify-content para space-between. Como são apenas duas box, isso faz com que a box com informações do User sempre fica na parte de baixo e sem atrapalhar quando a tela do usuario acontece overflow. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+18/04/2023
+- Card de produto, as informações de vendas anuais não aparecia devido estar recebendo um array com um objeto ao inves de apenas o objeto. Alterado para ser lido corretamente. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+20/04/2023
+- Pagina de Transactions, a tabela não atualizava para a quantidade correta de linhas quando alterado, não atualizava os dados quando trocava de pagina. Corrigido alterando o codigo do tutorial para o codigo sugerido na documentação do MUI DataGrid
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+25/04/2023
+- As paginas com graficos se expandiam de tamanho quando a side bar era minimizada, porem não se retraia quando reaberta, ajustei isto retirando o tamanho da side bar de forma bruta, porem se a janela estiver em tamanhos entre de 600 a uns 800px, a visualização pode ficar meio estranha, depois vou alterar isso para se ajustar conforme a side bar estar ativa ou não.
 
-### `npm run eject`
+26/04/2023
+- Coloquei os graficos para ficarem centralizados, agora fica um pouco melhor a visualização quando a side bar é minimizada.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+01/05/2023
+- Componente de customização de coluna das tabelas estava desatualizado com a ultima versão do MUI data grid, corrigi fazendo as modificações necessarias para a ultima versão.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+02/05/2023
+- Problema de requisição no end point "managment/performance/:id", eu tinha digitado perfomance no router e as requisiçoes estavam sendo feitos escritos com performance
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Desafios implementando novas funcionalidades
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+08/05/2023
+- Adicionei funcionalidade de login, gerando token jwt para admins e superadmins poderem operarem CRUD na Api. Adicionei tambem novos estados globais para o redux, para assim indentificar mais facil o usuario logado e fazer a liberação de funcionalidades de acordo com o seu papel.
