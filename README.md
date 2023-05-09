@@ -52,3 +52,6 @@ Em desenvolvimento
 
 08/05/2023
 - Adicionei funcionalidade de login, gerando token jwt para admins e superadmins poderem operarem CRUD na Api. Adicionei tambem novos estados globais para o redux, para assim indentificar mais facil o usuario logado e fazer a liberação de funcionalidades de acordo com o seu papel.
+
+09/05/2023
+- Organizei os codigos relacionados ao redux em novos arquivos, implementei persit para o usuario nao precisar logar a cada atualização de pagina. Modifiquei sidebar para se ajustar conforme o papel do usuario.
