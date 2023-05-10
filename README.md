@@ -12,8 +12,8 @@ Em desenvolvimento
 
 ### Features
 
-- [x] Login de usuário
-- [ ] Cadastro de usuario
+- [x] Login de Usuario
+- [x] Cadastro de Usuario (por enquanto apenas direto na API)
 - [x] Dashboard
 - [x] Client Facing
 - [x] Sales
