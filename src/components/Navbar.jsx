@@ -43,6 +43,8 @@ const Navbar = ({ user, isSideBarOpen, setIsSideBarOpen }) => {
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleLogout = () => {
     dispatch(setLogout());
     navigate("/login");
   };
@@ -132,7 +134,7 @@ const Navbar = ({ user, isSideBarOpen, setIsSideBarOpen }) => {
               onClose={handleClose}
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             >
-              <MenuItem onClick={handleClose}>Log Out</MenuItem>
+              <MenuItem onClick={handleLogout}>Log Out</MenuItem>
             </Menu>
           </FlexBetween>
         </FlexBetween>

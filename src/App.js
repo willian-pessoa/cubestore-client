@@ -34,7 +34,7 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route element={<ProtectedRoute isLoged={isLoged} role={["user"]} userRole={userRole}> <Layout /> </ProtectedRoute>}>
+            <Route element={<ProtectedRoute isLoged={isLoged} role={["user", "admin", "superadmin"]} userRole={userRole}> <Layout /> </ProtectedRoute>}>
               <Route path="/" element={<Navigate to={isLoged ? "/dashboard" : "/login"} replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/products" element={<Products />} />

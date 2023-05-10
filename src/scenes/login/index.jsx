@@ -57,7 +57,7 @@ const Login = () => {
 
   if (isLoading)
     return (
-      <CenterBox>
+      <CenterBox h="100vh" w="100vw">
         <CircularProgress />
       </CenterBox>
     );
