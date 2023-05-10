@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { themeSettings } from "theme";
 
+import ProtectedRoute from "components/ProtectedRoute";
+
 import Login from "scenes/login"
 import Layout from "scenes/layout";
 import Dashboard from "scenes/dashboard"
@@ -22,6 +24,7 @@ import Performance from "scenes/performance";
 function App() {
   const mode = useSelector((state) => state.global.mode)
   const isLoged = useSelector((state) => state.global.isLoged)
+  const userRole = useSelector((state) => state.global.role)
 
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
   return (
@@ -31,7 +34,7 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route element={<Layout />}>
+            <Route element={<ProtectedRoute isLoged={isLoged} role={["user"]} userRole={userRole}> <Layout /> </ProtectedRoute>}>
               <Route path="/" element={<Navigate to={isLoged ? "/dashboard" : "/login"} replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/products" element={<Products />} />
@@ -42,8 +45,8 @@ function App() {
               <Route path="/daily" element={<Daily />} />
               <Route path="/monthly" element={<Monthly />} />
               <Route path="/breakdown" element={<Breakdown />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/performance" element={<Performance />} />
+              <Route path="/admin" element={<ProtectedRoute isLoged={isLoged} role={["admin", "superadmin"]} userRole={userRole} redirectPath={"/dashboard"}><Admin /></ProtectedRoute>} />
+              <Route path="/performance" element={<ProtectedRoute isLoged={isLoged} role={["admin", "superadmin"]} userRole={userRole} redirectPath={"/dashboard"}><Performance /></ProtectedRoute>} />
             </Route>
           </Routes>
         </ThemeProvider>
