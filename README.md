@@ -14,6 +14,7 @@ Em desenvolvimento
 
 - [x] Login de Usuario
 - [x] Cadastro de Usuario (por enquanto apenas direto na API)
+- [x] Proteção de Rota
 - [x] Dashboard
 - [x] Client Facing
 - [x] Sales
@@ -23,7 +24,6 @@ Em desenvolvimento
 - [ ] Editar Produto
 - [ ] Cadastrar Produto
 - [ ] Remover Produto
-- [ ] Proteção de rota
 
 ### Dificuldades e Desafios durante o projeto(front-end e back-end):
 
@@ -57,3 +57,6 @@ Em desenvolvimento
 
 09/05/2023
 - Organizei os codigos relacionados ao redux em novos arquivos, implementei persit para o usuario nao precisar logar a cada atualização de pagina. Modifiquei sidebar para se ajustar conforme o papel do usuario.
+
+10/05/2023
+- Adicionei proteção de rota ao front-end de acordo com a role do usuario logado. Corrigido bug side bar não fechava quando modo mobile.
