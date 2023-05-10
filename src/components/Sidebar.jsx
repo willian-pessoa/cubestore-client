@@ -44,72 +44,72 @@ const navItems = [
   {
     text: "Dashboard",
     icon: <HomeOutlined />,
-    role: "user"
+    role: "user",
   },
   {
     text: "Client Facing",
     icon: null,
-    role: "user"
+    role: "user",
   },
   {
     text: "Products",
     icon: <ShoppingCartOutlined />,
-    role: "user"
+    role: "user",
   },
   {
     text: "Customers",
     icon: <Groups2Outlined />,
-    role: "user"
+    role: "user",
   },
   {
     text: "Transactions",
     icon: <ReceiptLongOutlined />,
-    role: "user"
+    role: "user",
   },
   {
     text: "Geography",
     icon: <PublicOutlined />,
-    role: "user"
+    role: "user",
   },
   {
     text: "Sales",
     icon: null,
-    role: "user"
+    role: "user",
   },
   {
     text: "Overview",
     icon: <PointOfSaleOutlined />,
-    role: "user"
+    role: "user",
   },
   {
     text: "Daily",
     icon: <TodayOutlined />,
-    role: "user"
+    role: "user",
   },
   {
     text: "Monthly",
     icon: <CalendarMonthOutlined />,
-    role: "user"
+    role: "user",
   },
   {
     text: "Breakdown",
     icon: <PieChartOutlined />,
-    role: "user"
+    role: "user",
   },
   {
     text: "Management",
     icon: null,
-    role: "admin"
+    role: "admin",
   },
   {
     text: "Admin",
     icon: <AdminPanelSettingsOutlined />,
-    role: "admin"
+    role: "admin",
   },
   {
     text: "Performance",
     icon: <TrendingUpOutlined />,
-    role: "admin"
+    role: "admin",
   },
 ];
 
@@ -121,6 +121,7 @@ const Sidebar = ({
   isNonMobile,
   userRole,
 }) => {
+  console.log("🚀 ~ file: Sidebar.jsx:124 ~ isSideBarOpen:", isSideBarOpen);
   const { pathname } = useLocation();
   const [active, setActive] = useState("");
   const navigate = useNavigate();
@@ -135,7 +136,6 @@ const Sidebar = ({
       {isSideBarOpen && (
         <Drawer
           open={isSideBarOpen}
-          onClick={() => setIsSideBarOpen(true)}
           variant="persistent"
           anchor="left"
           sx={{
@@ -168,7 +168,7 @@ const Sidebar = ({
             </Box>
             <List>
               {navItems.map(({ text, icon, role }) => {
-                if (role === "admin" && userRole === "user" ) return ""
+                if (role === "admin" && userRole === "user") return "";
 
                 if (!icon) {
                   return (
