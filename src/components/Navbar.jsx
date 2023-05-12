@@ -5,7 +5,7 @@ import {
   DarkModeOutlined,
   Menu as MenuIcon,
   Search,
-  SettingsOutlined,
+  PersonOutline,
   ArrowDropDownOutlined,
 } from "@mui/icons-material";
 import FlexBetween from "components/FlexBetween";
@@ -86,7 +86,10 @@ const Navbar = ({ user, isSideBarOpen, setIsSideBarOpen }) => {
             )}
           </IconButton>
           <IconButton>
-            <SettingsOutlined sx={{ fontSize: "25px" }} />
+            <PersonOutline
+              onClick={() => navigate("/profile")}
+              sx={{ fontSize: "25px" }}
+            />
           </IconButton>
 
           <FlexBetween>

@@ -13,7 +13,7 @@ import {
   useTheme,
 } from "@mui/material";
 import {
-  SettingsOutlined,
+  PersonOutline,
   ChevronLeft,
   ChevronRightOutlined,
   HomeOutlined,
@@ -252,9 +252,12 @@ const Sidebar = ({
                   {user.occupation}
                 </Typography>
               </Box>
-              <SettingsOutlined
-                sx={{ color: theme.palette.secondary[300], fontSize: "25px" }}
-              />
+              <IconButton>
+                <PersonOutline
+                  onClick={() => navigate("/profile")}
+                  sx={{ color: theme.palette.secondary[300], fontSize: "25px" }}
+                />
+              </IconButton>
             </FlexBetween>
           </Box>
         </Drawer>

@@ -20,6 +20,7 @@ import Monthly from "scenes/monthly";
 import Breakdown from "scenes/breakdown"
 import Admin from "scenes/admin"
 import Performance from "scenes/performance";
+import Profile from "scenes/profile"
 
 function App() {
   const mode = useSelector((state) => state.global.mode)
@@ -47,6 +48,7 @@ function App() {
               <Route path="/breakdown" element={<Breakdown />} />
               <Route path="/admin" element={<ProtectedRoute isLoged={isLoged} role={["admin", "superadmin"]} userRole={userRole} redirectPath={"/dashboard"}><Admin /></ProtectedRoute>} />
               <Route path="/performance" element={<ProtectedRoute isLoged={isLoged} role={["admin", "superadmin"]} userRole={userRole} redirectPath={"/dashboard"}><Performance /></ProtectedRoute>} />
+              <Route path="/profile" element={<Profile />} />
             </Route>
           </Routes>
         </ThemeProvider>
