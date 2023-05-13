@@ -22,6 +22,7 @@ import {
   Menu,
   MenuItem,
   useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import userProfile from "assets/userProfile.jpg";
 import adminProfile from "assets/adminProfile.jpg";
@@ -37,6 +38,7 @@ const Navbar = ({ user, isSideBarOpen, setIsSideBarOpen }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useTheme();
+  const isNonMobile = useMediaQuery("(min-width: 600px)");
 
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
@@ -63,17 +65,21 @@ const Navbar = ({ user, isSideBarOpen, setIsSideBarOpen }) => {
           <IconButton onClick={() => setIsSideBarOpen((prev) => !prev)}>
             <MenuIcon />
           </IconButton>
-          <FlexBetween
-            backgroundColor={theme.palette.background.alt}
-            borderRadius="9px"
-            gap="3rem"
-            p="0.1rem 1.5rem"
-          >
-            <InputBase placeholder="Search..." />
-            <IconButton>
-              <Search />
-            </IconButton>
-          </FlexBetween>
+          {!isNonMobile ? (
+            ""
+          ) : (
+            <FlexBetween
+              backgroundColor={theme.palette.background.alt}
+              borderRadius="9px"
+              gap="3rem"
+              p="0.1rem 1.5rem"
+            >
+              <InputBase placeholder="Search..." />
+              <IconButton>
+                <Search />
+              </IconButton>
+            </FlexBetween>
+          )}
         </FlexBetween>
 
         {/* {RIGHT SIDE} */}
@@ -85,11 +91,8 @@ const Navbar = ({ user, isSideBarOpen, setIsSideBarOpen }) => {
               <LightModeOutlined sx={{ fontSize: "25px" }} />
             )}
           </IconButton>
-          <IconButton>
-            <PersonOutline
-              onClick={() => navigate("/profile")}
-              sx={{ fontSize: "25px" }}
-            />
+          <IconButton onClick={() => navigate("/profile")}>
+            <PersonOutline sx={{ fontSize: "25px" }} />
           </IconButton>
 
           <FlexBetween>

@@ -252,9 +252,8 @@ const Sidebar = ({
                   {user.occupation}
                 </Typography>
               </Box>
-              <IconButton>
+              <IconButton onClick={() => navigate("/profile")}>
                 <PersonOutline
-                  onClick={() => navigate("/profile")}
                   sx={{ color: theme.palette.secondary[300], fontSize: "25px" }}
                 />
               </IconButton>
