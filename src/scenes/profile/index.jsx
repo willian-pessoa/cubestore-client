@@ -10,6 +10,8 @@ import {
   TableRow,
   TableCell,
   CircularProgress,
+  Button,
+  TextField,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useGetUserQuery } from "state/apiQuerys";
@@ -21,6 +23,7 @@ const Profile = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
   const userId = useSelector((state) => state.global.userId);
   const { data, isLoading } = useGetUserQuery(userId);
+  const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState({
     name: "",
     email: "",
@@ -30,7 +33,15 @@ const Profile = () => {
     phone: "",
     role: "",
   });
-  console.log("🚀 ~ file: index.jsx:11 ~ Profile ~ data:", data);
+  console.log("🚀 ~ file: index.jsx:36 ~ Profile ~ profile:", profile);
+
+  const handleTextField = (e, key) => {
+    e.preventDefault();
+    setProfile((prev) => ({
+      ...prev,
+      [key]: e.target.value,
+    }));
+  };
 
   useEffect(() => {
     setProfile({
@@ -57,8 +68,7 @@ const Profile = () => {
       <Box
         m="20px auto"
         width={isNonMobile ? "80%" : "95%"}
-        height="80%"
-        border={`1px solid ${theme.palette.secondary[200]}`}
+        border={`1px solid ${theme.palette.secondary[100]}`}
         borderRadius="4px"
       >
         <TableContainer>
@@ -72,7 +82,16 @@ const Profile = () => {
                         <TableCell sx={{ fontSize: "0.9rem" }}>
                           {key[0].toUpperCase() + key.substring(1)}
                         </TableCell>
-                        <TableCell sx={{ fontSize: "0.9rem" }}>{value}</TableCell>
+                        <TableCell sx={{ fontSize: "0.9rem" }}>
+                          {isEditing ? (
+                            <TextField
+                              value={value}
+                              onChange={(e) => handleTextField(e, key)}
+                            />
+                          ) : (
+                            value
+                          )}
+                        </TableCell>
                       </TableRow>
                     );
                   })}
@@ -80,6 +99,25 @@ const Profile = () => {
           </Table>
         </TableContainer>
       </Box>
+      <CenterBox>
+        <Button
+          onClick={() => setIsEditing((prev) => !prev)}
+          sx={{
+            backgroundColor: theme.palette.secondary.light,
+            color: theme.palette.background.alt,
+            fontSize: "14px",
+            fontWeight: "bold",
+            padding: "10px 20px",
+            alignSelf: "center",
+            ":hover": {
+              bgcolor: theme.palette.primary[400],
+              color: theme.palette.secondary.light,
+            },
+          }}
+        >
+          Editar
+        </Button>
+      </CenterBox>
     </Box>
   );
 };
